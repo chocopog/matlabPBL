@@ -107,10 +107,10 @@ spectrogram(y, win, overlap, nfft, fs, 'yaxis'); %[output:0548e65f]
 title('Cleaned'); %[output:0548e65f]
 caxis(c);   % same colour scale so the two plots can be compared %[output:0548e65f]
 
-sound(x, fs); pause(length(x) / fs + 0.5); sound(y, fs);   % uncomment to listen
+sound(x, fs); pause(length(x) / fs + 0.5); sound(y, fs);   
 %%
- disp(any(isnan(y)))          % 1 means NaN values got in
- disp(max(abs(y)))            % 0 or tiny means the output really is silent
+ disp(any(isnan(y)))          
+ disp(max(abs(y)))            
  disp([nFrames floorFrac])    % what the script used
  disp(max(abs(x)))            % peak of the original, for comparison
  disp([max(M(:)) max(n)])     % loudest cell vs loudest noise level
@@ -118,7 +118,7 @@ sound(x, fs); pause(length(x) / fs + 0.5); sound(y, fs);   % uncomment to listen
 %%
  yRaw = real(istft(Sclean, fs, 'Window', win, 'OverlapLength', overlap, 'FFTLength', nfft));
  y0   = real(istft(S,      fs, 'Window', win, 'OverlapLength', overlap, 'FFTLength', nfft));
- disp(max(abs(y0(1:N) - x)))                   % close to 0 means the round trip alone is fine
+ disp(max(abs(y0(1:N) - x)))                   
  [pk, i] = max(abs(yRaw));  disp([pk, i/fs])   % biggest raw value, and the time it happens
  figure; plot((1:numel(yRaw))/fs, yRaw)        % the cleaned signal before any scaling
 
